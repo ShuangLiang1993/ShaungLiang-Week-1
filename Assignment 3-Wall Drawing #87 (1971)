@@ -1,0 +1,39 @@
+var i=500;
+var n=250;
+function setup() {
+  createCanvas(500,500);
+}
+
+function draw() {
+  background(255);
+  
+  for(var a=0; a<=i; a=a+10){
+    stroke(102, 252, 180);
+    line(a,0,a,500);
+  }
+  
+  for(var b=250; b<=i; b=b+10){
+    stroke(255, 228, 0,80);
+    line(0,b,500,b);
+  }
+  
+  for(var c=0; c<=n; c=c+10){
+    stroke(252, 228, 0,80);
+    line(250,c,500,c);
+  }
+  
+  for(var d=0, e=-250; d<=i+250, e<=i; d=d+10, e=e+10){
+    stroke(251, 129, 227,80);
+    line(d,500,e,250);
+  }
+  
+  for(var f=250; f<=500; f=f+10){
+    stroke(175, 11, 251,80);
+    line(500,f,f,500);
+  }
+  
+  for(var g=490; g>=260; g=g-10){
+    stroke(175, 11, 251,80);
+    line(g,250,250,g);
+  }
+}
