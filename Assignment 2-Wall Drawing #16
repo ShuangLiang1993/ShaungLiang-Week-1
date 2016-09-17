@@ -1,0 +1,28 @@
+var i=500;
+
+
+function setup() {
+  createCanvas(500,500);
+}
+
+function draw() {
+  background(255);
+  
+  rect(1,150,498,200);
+  rect(150,1,200,498);
+  
+  for(var a=1; a<=i; a=a+3){
+    line(a,150,a,350);
+  }
+  
+  for(var b=1; b<=i; b=b+3){
+    line(150,b,350,b);
+  }
+  
+  line(0,350,350,0);
+  line(500,150,150,500);
+  
+  for (var d=-150; d<=i; d=d+3){
+    line(d,350-d,150+d,500-d);
+  }
+}
