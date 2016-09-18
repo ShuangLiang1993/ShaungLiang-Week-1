@@ -1,28 +1,39 @@
 var i=500;
-
+var m=300;
 
 function setup() {
-  createCanvas(500,500);
+  createCanvas(500,300);
 }
 
 function draw() {
   background(255);
+  stroke(200);
+  rect(0,70,500,160);
+  rect(150,0,200,300);
   
-  rect(1,150,498,200);
-  rect(150,1,200,498);
-  
-  for(var a=1; a<=i; a=a+3){
-    line(a,150,a,350);
+  for(var a=0; a<=i; a=a+3){
+    line(a,70,a,230);
   }
   
-  for(var b=1; b<=i; b=b+3){
+  for(var b=0; b<=m; b=b+3){
     line(150,b,350,b);
   }
   
-  line(0,350,350,0);
-  line(500,150,150,500);
+  line(0,200,370,0);
+  line(500,100,130,300);
   
-  for (var d=-150; d<=i; d=d+3){
-    line(d,350-d,150+d,500-d);
+  /*for(var c=0; c<=500; c=c+3){
+    var x=260+0.65c;
+    var y=460+0.65c;
+    line(c,x,c+20,y);
+  }*/
+  
+//for( var e=0; e<=500; e=e+3){
+  for(var d=0,e=0; d<=600; d=d+2.64,e=e+1.43){
+     //line(d,200-(20/37*d),110+d,310-20/37*d);
+    //line(437+e,104+e,130+e,300+e);
+   // line(d,d,0,0);
+   //line(130+d,300-e,58.77+d,168.23-e);
+   line(29.4+d,354.6-e,d-42,222-e);
   }
 }
