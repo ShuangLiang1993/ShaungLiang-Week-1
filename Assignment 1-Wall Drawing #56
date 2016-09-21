@@ -6,6 +6,8 @@ function setup() {
 
 function draw() {
   background(255);
+  //Another way of writing a=a+10 is a+=10
+  //for example: for(var a=0; a <=i; a+=10)
   for(var a=0; a<=i; a=a+10){
     line(a,0,a,500);
   }
