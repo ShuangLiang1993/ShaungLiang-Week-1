@@ -1,16 +1,33 @@
+var x,y;
+var a1=225;
+var a2=369;
+var b1=a1+143;
+var b2=a2-199;
+var c1=b1-65;
+var c2=b2-45;
+var d1=a1-65;
+var d2=a2-45;
+
+var triangleX1=298;
+var triangleY1=386;
+var triangleX2=200;
+var triangleY2=297;
+
 function setup() {
   createCanvas(500,650);
 }
 
 function draw() {
+  var r=40;
+  
   background (0);
   fill(225,226,230);
   rect(90,80,320,490);
-  //fill(225,222,217);
+  
   stroke(180,183,184);
   fill(223,222,218);
   rect(359,518,50,50);
-  //fill(225,222,223);
+  
   noStroke();
   fill(189,176,142);
   rect(190,370,230,90);
@@ -18,16 +35,19 @@ function draw() {
   rect(315,370,10,90);
   
   fill(225,226,230);
-  triangle(220, 360, 210, 390, 230, 390);
-  fill(194,79,94);
-  triangle(290, 360, 280, 390, 300, 390);
+  for(x=220,y=360;x<=290;x=x+70){
+    
+    triangle(x, y, x-10, y+30, x+10, y+30);
+    fill(194,79,94);
+  }
+
   fill(225,226,230);
   noStroke();
-  triangle(298, 386, 296, 390, 300, 390);
+  triangle(triangleX1, triangleY1, triangleX1-2, triangleY1+4, triangleX1+2, triangleY1+4);
   
   fill(225,226,230);
-  ellipse(355, 405, 40, 40);
-  quad(365, 370, 404, 460, 410, 460, 371,370);
+  ellipse(355, 405, r, r);
+  quad(365, 370, 404, 460, 410, 460, 371, 370);
   
   fill(194,79,94);
   quad(270, 370, 310,370,341,330,320,310);
@@ -41,13 +61,14 @@ function draw() {
   
   fill(227,223,220);
   stroke(181,180,176);
-  quad(225,369,368,170,305,125,160,325);
+ 
+  quad(a1,a2,b1,b2,c1,c2,d1,d2);
   fill(181,180,158);
   quad(190,285,332,89,325,85,185,280);
   
   quad(339,80,375,31,368,26,328,80);
   
   fill(0);
-  triangle(200, 297, 200, 265, 175, 298);
-  
+  triangle(triangleX2, triangleY2 ,triangleX2, triangleY2-32 ,triangleX2-25, triangleY2+1);
+
 }
