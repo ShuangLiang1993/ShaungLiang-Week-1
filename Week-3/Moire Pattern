@@ -1,0 +1,59 @@
+var rotationSpeed = 0.02;
+var theta = 0.0;
+
+function setup() {
+  createCanvas(400,400);
+  ellipseMode(CENTER);
+}
+
+function draw() {
+  background(255);
+  noFill();
+  var x1=0;
+  var y1=0;
+  var x2=0;
+  var x3=0;
+  var y3=0;
+  var y4=0;
+  
+  for (var i=0; i<150; i+=2){
+    beginShape();
+    vertex(125+x1,70+y1);
+    vertex(275-x1,70+y1);
+    vertex(350-x2,200);
+    vertex(275-x1,330-y1);
+    vertex(125+x1,330-y1);
+    vertex(50+x2,200);
+    endShape(CLOSE);
+
+    x1+=1;
+    y1+=1.73;
+    x2+=2;
+    
+  }//Create first hexagon group
+  
+  for (var r=0; r<150; r+=2){
+    beginShape();
+    vertex(70+x3,275-y3);
+    vertex(70+x3,125+y3);
+    vertex(200,50+y4);
+    vertex(330-x3,125+y3);
+    vertex(330-x3,275-y3);
+    vertex(200,350-y4);
+    endShape(CLOSE);
+    
+    y3++;
+    x3+=1.73;
+    y4+=2;
+  }//Create second hexagon group
+   
+    push();
+    translate(200, 200);
+    rotate(theta);
+    for(var num=150; num>0; num-=4){
+      ellipse(20,0,num*2,num*2);
+    }
+    pop();
+    theta += rotationSpeed;
+    //Ellipses Rotate
+}
