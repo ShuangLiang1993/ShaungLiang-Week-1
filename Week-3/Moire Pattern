@@ -1,3 +1,9 @@
+/**
+* Kevin's comments:  This is really great work!  I can see you're already getting the feel for creative coding :)
+Som more advanced feedback that I wouldn't normally give this early in the class but I think you should be able to handle it.
+Let me know if you have any questions.  See my feedback inline with the code below.
+**/
+
 var rotationSpeed = 0.02;
 var theta = 0.0;
 
@@ -18,6 +24,19 @@ function draw() {
   
   for (var i=0; i<150; i+=2){
     beginShape();
+    /*instead of writing out vertex 6 times, try using an inner for loop here as well and loop 6 times.
+    * one way to think about your hexagon is that it is similar to drawing a circle.  We will cover this later in the class,
+    *but one way of calculating a circle is to use sin() and cos().  Here are the equations you will need:
+    y = sin(theta) * circleRadius;
+    x = cos(theta) * circleRadius;
+    Usually when we draw a circle we want to draw completely around 360 degrees (otherwise known as TWO_PI)
+    If we wanted to draw an equalateral polygon, however, we need to skip some angles as we rotate around our 360 degrees.
+    Therefore, if we wanted to draw a hexagon, we could take (360 / number of sides) and add that value to our angle every time we loop.
+    Here's what that code looks like:
+    for(var side =0; side < 6; side++){
+			vertex(sin(radians(360 / 6 * side)) * x1, cos(radians(360 / 6 * side)) * y1);
+		}
+    */
     vertex(125+x1,70+y1);
     vertex(275-x1,70+y1);
     vertex(350-x2,200);
@@ -46,7 +65,7 @@ function draw() {
     x3+=1.73;
     y4+=2;
   }//Create second hexagon group
-   
+   // Instead of rotating the ellipses, try rotating your hexagons underneath.
     push();
     translate(200, 200);
     rotate(theta);
