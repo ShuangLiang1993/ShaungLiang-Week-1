@@ -1,0 +1,43 @@
+var colorFrom1; var colorTo1; var colorFrom2; var colorTo2;
+function setup() {
+  createCanvas(500,400);
+}
+
+function draw() {
+  noFill();
+  noStroke();
+  rect(0,0,250,400);
+  colorFrom1= color(255,89,3);
+  colorTo1=color(255,247,163);
+  for(var i=0; i < height ; i+=3){
+    var lerpAmt = map(i, 0, height, 0, 1.0);
+    var lerpedCol = lerpColor(colorFrom1,
+      colorTo1,
+      lerpAmt);
+    stroke(lerpedCol);
+    strokeWeight(3);
+    line(0,i,250,i);
+  }
+  rect(250,0,250,400);
+  colorFrom2= color(0,54,105);
+  colorTo2=color(40,40,61);
+  for(var m=0; m < height ; m+=3){
+    var lerpAmt = map(m, 0, height, 0, 1.0);
+    var lerpedCol = lerpColor(colorFrom2,
+      colorTo2,
+      lerpAmt);
+    stroke(lerpedCol);
+    strokeWeight(3);
+    line(249,m,500,m);
+  }
+  ellipseMode(CENTER);  
+  fill(255,249,191);  
+  noStroke();
+  ellipse(160, 110, 50, 50);
+  fill(255,249,191);  
+  noStroke();
+  ellipse(330, 100, 50, 50);
+  fill(8,51,97); 
+  noStroke();
+  ellipse(310, 80, 70, 70);
+}
