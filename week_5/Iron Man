@@ -1,0 +1,135 @@
+
+function setup() {
+  createCanvas(500,500);
+
+}
+
+
+function draw() {
+  background(255);
+  var centerX = width/2-130;
+  var centerY = height/2;
+ 
+  scale(2);
+  head(centerX,centerY);
+  
+}
+
+
+
+function head(x,y){
+  var headCenterX = x;
+  var headCenterY = y-150;
+  fill(182,31,36);
+  strokeWeight(2);
+  beginShape();
+  vertex(headCenterX-55,headCenterY-70);
+  vertex(headCenterX-25,headCenterY-90);
+  vertex(headCenterX+25,headCenterY-90);
+  vertex(headCenterX+55,headCenterY-70);
+  vertex(headCenterX+70,headCenterY-10);
+  vertex(headCenterX+50,headCenterY+75);
+  vertex(headCenterX+5,headCenterY+100);
+  vertex(headCenterX-5,headCenterY+100);
+  vertex(headCenterX-50,headCenterY+75);
+  vertex(headCenterX-70,headCenterY-10);
+  vertex(headCenterX-55,headCenterY-70);
+  endShape(close); //red part
+  
+  fill(233,176,74);
+  strokeWeight(2);
+  beginShape();
+  vertex(headCenterX-50,headCenterY-60);
+  vertex(headCenterX-30,headCenterY-70);
+  vertex(headCenterX-18,headCenterY-50);
+  vertex(headCenterX,headCenterY-40);
+  vertex(headCenterX+18,headCenterY-50);
+  vertex(headCenterX+30,headCenterY-70);
+  vertex(headCenterX+50,headCenterY-60);
+  vertex(headCenterX+55,headCenterY-25);
+  vertex(headCenterX+65,headCenterY-18);
+  vertex(headCenterX+62,headCenterY+10);
+  vertex(headCenterX+52,headCenterY+20);
+  vertex(headCenterX+40,headCenterY+60);
+  vertex(headCenterX,headCenterY+80);
+  vertex(headCenterX-40,headCenterY+60);
+  vertex(headCenterX-52,headCenterY+20);
+  vertex(headCenterX-62,headCenterY+10);
+  vertex(headCenterX-65,headCenterY-18);
+  vertex(headCenterX-55,headCenterY-25);
+  vertex(headCenterX-50,headCenterY-60);
+  endShape(close); //yellow part
+  
+  noFill();
+  triangle(headCenterX,headCenterY-55,headCenterX+10,headCenterY-65,headCenterX-10,headCenterY-65);
+  
+  eyes(headCenterX,headCenterY);
+  
+  noFill();
+
+  arc(headCenterX-30,headCenterY-90,20,40,0,HALF_PI);
+  arc(headCenterX+30,headCenterY-90,20,40,HALF_PI,PI);
+  
+  lineOnFace(headCenterX,headCenterY);
+  
+}
+
+
+
+function lineOnFace(x,y){
+  strokeWeight(1);
+  line(x,y-20,x,y+50);
+  line(x-40,y-4,x,y+7);
+  line(x+40,y-4,x,y+7);
+  line(x-12,y,x-53,y-17);
+  line(x+12,y,x+52,y-17);
+  strokeWeight(0.5);
+  line(x-55,y-25,x-52,y+10);
+  line(x+55,y-25,x+52,y+10);
+  strokeWeight(2);
+  line(x+40,y+60,x+50,y+75);
+  line(x-40,y+60,x-50,y+75);
+  line(x,y+80,x,y+95);
+  line(x,y+95,x-5,y+100);
+  line(x,y+95,x+5,y+100);
+  
+  beginShape();
+  vertex(x-65,y+10);
+  vertex(x-56,y+25);
+  vertex(x-46,y+68);
+  vertex(x,y+95);
+  vertex(x+46,y+68);
+  vertex(x+56,y+25);
+  vertex(x+65,y+10);
+  endShape();
+}
+
+
+
+function eyes(x,y){
+  
+  var color2=color(255,249,224);
+  var color1=color(0);
+  var lerpAmt = map(mouseX, 0, width, 0, 1.0);
+  var lerpedCol = lerpColor(color1, color2, lerpAmt);
+  fill(lerpedCol);
+  beginShape();
+  vertex(x-45,y-13);
+  vertex(x-12,y);
+  vertex(x-12,y+4);
+  vertex(x-40,y-4);
+  vertex(x-50,y-10);
+  vertex(x-45,y-13);
+  endShape(close);
+  
+  beginShape();
+  vertex(x+45,y-13);
+  vertex(x+12,y);
+  vertex(x+12,y+4);
+  vertex(x+40,y-4);
+  vertex(x+50,y-10);
+  vertex(x+45,y-13);
+  endShape(close);
+  
+}
+
