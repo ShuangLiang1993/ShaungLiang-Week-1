@@ -1,0 +1,70 @@
+var _scale=1;
+var xTime=0;
+
+function setup() {
+  createCanvas(500,500);
+  background(192,63,54);
+  fill(35,176,189);
+  noStroke();
+  ellipse(width/2,height/2,25,25);
+  frameRate(10);
+}
+
+function draw() {
+  translate(width/2,height/2);
+  rotate(radians((frameCount*10)%360));
+  
+  
+  redFrom = color(210,151,153);
+  blueFrom = color(35,176,189);
+  to = color(192,63,54);
+  var lerpAmt = map(xTime, 0, 200, 0, 1.0);
+    
+  var redLerpedCol = lerpColor(redFrom,
+      to,
+      lerpAmt);
+      
+  var blueLerpedCol = lerpColor(blueFrom,
+      to,
+      lerpAmt);
+      
+  for(var i =0; i < 2; i++){
+    if(i===0){
+      push();
+   
+    rotate(TWO_PI * i / 2);
+    
+    
+    fill(255);
+    Arrow(((frameCount*5)/4) % (width/2),10,redLerpedCol);
+    pop();}
+    if(i===1){
+       push();
+    
+
+   
+    rotate(TWO_PI * i / 2);
+    
+    fill(255);
+    Arrow(((frameCount*5)/4) % (width/2),10,blueLerpedCol);
+    pop();
+    }
+  }
+ xTime++;
+  while(xTime===200)
+  {
+    noLoop();
+  }
+}
+
+function Arrow(center_X,center_Y,color_){
+  noStroke();
+  fill(color_);
+  beginShape();
+  vertex(center_X,center_Y-2);
+  vertex(center_X-10,center_Y-10);
+  vertex(center_X,center_Y+10);
+  vertex(center_X+10,center_Y-10);
+  vertex(center_X,center_Y-2);
+  endShape(close);
+}
