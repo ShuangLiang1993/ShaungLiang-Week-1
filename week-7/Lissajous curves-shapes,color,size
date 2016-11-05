@@ -1,0 +1,48 @@
+var waveLengthOne = 90.0;
+var waveLengthTwo = 95.0;
+var pointCount = 0;
+var angle = 0.0;
+var amplitude = 200;
+
+function setup(){
+  createCanvas(400,400);
+  colorMode(HSB,360,100,100,1);
+  rectMode(CENTER);
+}
+function draw(){
+  
+  var colorFrom = color(0,100,100,0.2);
+  var colorTo = color (75,100,100,0.2);
+  
+  if(pointCount > 10000){
+    noLoop();
+  }
+
+  translate(width/2, height/2);
+
+  for(var i=0; i < pointCount; i++){
+    
+  angle = i / waveLengthOne * TWO_PI;
+  var y = sin(angle)* amplitude;
+  
+  angle = i / waveLengthTwo * TWO_PI;
+  var x = sin(angle)* amplitude;
+  
+  var _color = lerpColor(colorFrom,colorTo,map(cos(angle), -1, 1, 0, 1));
+  fill(_color);
+  noStroke();
+  
+  if(floor((i%30)%3)===0){
+    rect(x, y, 10*sin(angle), 10*sin(angle));
+  }
+  if(floor((i%30)%3)===1){
+    ellipse(x, y, 10*sin(angle), 10*sin(angle));
+  }
+  else{
+    triangle(x, y, x-3*sin(angle), y-5*sin(angle), x+3*sin(angle), y-5*sin(angle));
+  }
+  }
+
+pointCount++;
+}
+  
