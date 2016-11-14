@@ -1,3 +1,9 @@
+/**
+** Kevin's notes:  Great work!  Now the next challenge would be to have the particle system emitter (the center of the system) follow
+your mouse position.  The simplest way to do this would be to ammend your addParticle() method to accept an xy position
+as parameter.
+**/
+
 var system;
 var shape = 0;
 
