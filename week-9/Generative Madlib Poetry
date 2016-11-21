@@ -1,0 +1,75 @@
+var lexicon;
+var lexicon1;
+
+var lines = "At the breakfast-table the conversation had been entirely devoted to herself, her fiancé, and the coming dinner together. Miss Wangle, Mrs. Mosscrop-Smythe, and Miss Sikkum, supported by Mrs Craske-Morton, had returned to the charge time after time. Patricia had taken refuge in her habitual breakfast silence and, finding that they could draw nothing from her her fellow-guests had proceeded to discuss the matter among themselves. It was with a feeling of relief that Patricia rose from the table.";//we declare lines as an empty array 
+var words = [];
+var wordPosX = 10;
+var wordPosY = 0;
+var syllables = [];
+var syllablePosX =10;
+var syllablePosY =250;
+
+//preload gets called BEFORE setup
+function preload(){
+
+  words = RiTa.tokenize(lines);
+}
+
+function setup() {
+  createCanvas(420,600);
+  lexicon = new RiLexicon();
+  lexicon1 = new RiLexicon();
+
+  var wordPos = 0;
+    for(var i=0; i < words.length; i++){
+      text(words[i], wordPosX, wordPosY, textWidth(words[i]),20);
+      syllables[i]=RiTa.getPhonemes(words[i]);
+      text(syllables[i], syllablePosX, syllablePosY, textWidth(syllables[i]),20);
+      wordPosX += textWidth(words[i])+5;
+      syllablePosX += textWidth(syllables[i])+5;
+      if(wordPosX > 350){
+        wordPosX = 10;
+        wordPosY +=  20;
+      }
+     if(syllablePosX > 330){
+        syllablePosX = 10;
+        syllablePosY +=  20;
+      }
+    }
+}
+
+function keyPressed() {
+  
+background(255);
+  var wordPosX1 = 10;
+  var wordPosY1 = 0;
+  var syllablePosX1 =10;
+  var syllablePosY1 =250;
+
+  for(var i=0; i < words.length; i++){
+    if(lexicon1.isAdjective( words [i])){
+          words[i]= lexicon.randomWord("jj");
+          syllables[i]=RiTa.getPhonemes(words[i]);
+        }
+    else if(lexicon1.isNoun(words [i])){
+     words[i]= lexicon.randomWord("nn");
+     syllables[i]=RiTa.getPhonemes(words[i]);
+    }
+    else {}
+  }
+  
+  for(var a=0; a < words.length-1; a++){
+      text(words[a], wordPosX1, wordPosY1, textWidth(words[a]),20);
+      text(syllables[a], syllablePosX1, syllablePosY1, textWidth(syllables[a]),20);
+      wordPosX1 += textWidth(words[a])+5;
+      syllablePosX1 += textWidth(syllables[a])+5;
+      if(wordPosX1 > 350){
+        wordPosX1 = 10;
+        wordPosY1 +=  20;
+      }
+      if(syllablePosX1 > 330){
+        syllablePosX1 = 10;
+        syllablePosY1 +=  20;
+      }
+    }
+}
