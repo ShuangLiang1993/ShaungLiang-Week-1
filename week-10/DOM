@@ -1,0 +1,190 @@
+function IronMan(posx,posy){
+
+  this.posx = posx;
+  this.posy = posy;
+  this._color1 = color(182,31,36);
+  this._color2 = color(233,176,74);
+  this.eyeColor = 50;
+}
+
+IronMan.prototype.draw = function(){
+  
+
+  this.head();
+};
+
+IronMan.prototype.head = function(){
+  
+  var headCenterX = this.posx;
+  var headCenterY = this.posy-150;
+  fill(this._color1);
+  strokeWeight(2);
+  beginShape();
+  vertex(headCenterX-55,headCenterY-70);
+  vertex(headCenterX-25,headCenterY-90);
+  vertex(headCenterX+25,headCenterY-90);
+  vertex(headCenterX+55,headCenterY-70);
+  vertex(headCenterX+70,headCenterY-10);
+  vertex(headCenterX+50,headCenterY+75);
+  vertex(headCenterX+5,headCenterY+100);
+  vertex(headCenterX-5,headCenterY+100);
+  vertex(headCenterX-50,headCenterY+75);
+  vertex(headCenterX-70,headCenterY-10);
+  vertex(headCenterX-55,headCenterY-70);
+  endShape(close); //red part
+  
+  fill(this._color2);
+  strokeWeight(2);
+  beginShape();
+  vertex(headCenterX-50,headCenterY-60);
+  vertex(headCenterX-30,headCenterY-70);
+  vertex(headCenterX-18,headCenterY-50);
+  vertex(headCenterX,headCenterY-40);
+  vertex(headCenterX+18,headCenterY-50);
+  vertex(headCenterX+30,headCenterY-70);
+  vertex(headCenterX+50,headCenterY-60);
+  vertex(headCenterX+55,headCenterY-25);
+  vertex(headCenterX+65,headCenterY-18);
+  vertex(headCenterX+62,headCenterY+10);
+  vertex(headCenterX+52,headCenterY+20);
+  vertex(headCenterX+40,headCenterY+60);
+  vertex(headCenterX,headCenterY+80);
+  vertex(headCenterX-40,headCenterY+60);
+  vertex(headCenterX-52,headCenterY+20);
+  vertex(headCenterX-62,headCenterY+10);
+  vertex(headCenterX-65,headCenterY-18);
+  vertex(headCenterX-55,headCenterY-25);
+  vertex(headCenterX-50,headCenterY-60);
+  endShape(close); //yellow part
+  
+  noFill();
+  triangle(headCenterX,headCenterY-55,headCenterX+10,headCenterY-65,headCenterX-10,headCenterY-65);
+  
+  this.eyes();
+  
+  noFill();
+
+  arc(headCenterX-30,headCenterY-90,20,40,0,HALF_PI);
+  arc(headCenterX+30,headCenterY-90,20,40,HALF_PI,PI);
+  
+  this.lineOnFace(headCenterX,headCenterY);
+  
+};
+
+IronMan.prototype.eyes = function(){
+  var color2=color(255,249,224);
+  var color1=color(0);
+  var lerpAmt = map(this.eyeColor, 0, 100, 0, 1.0);
+  var lerpedCol = lerpColor(color1, color2, lerpAmt);
+  var x=this.posx;
+  var y=this.posy-150;
+  fill(lerpedCol);
+  beginShape();
+  vertex(x-45,y-13);
+  vertex(x-12,y);
+  vertex(x-12,y+4);
+  vertex(x-40,y-4);
+  vertex(x-50,y-10);
+  vertex(x-45,y-13);
+  endShape(close);
+  
+  beginShape();
+  vertex(x+45,y-13);
+  vertex(x+12,y);
+  vertex(x+12,y+4);
+  vertex(x+40,y-4);
+  vertex(x+50,y-10);
+  vertex(x+45,y-13);
+  endShape(close);
+};
+
+
+IronMan.prototype.lineOnFace = function(){
+  var x=this.posx;
+  var y=this.posy-150;
+  strokeWeight(1);
+  line(x,y-20,x,y+50);
+  line(x-40,y-4,x,y+7);
+  line(x+40,y-4,x,y+7);
+  line(x-12,y,x-53,y-17);
+  line(x+12,y,x+52,y-17);
+  strokeWeight(0.5);
+  line(x-55,y-25,x-52,y+10);
+  line(x+55,y-25,x+52,y+10);
+  strokeWeight(2);
+  line(x+40,y+60,x+50,y+75);
+  line(x-40,y+60,x-50,y+75);
+  line(x,y+80,x,y+95);
+  line(x,y+95,x-5,y+100);
+  line(x,y+95,x+5,y+100);
+  
+  beginShape();
+  vertex(x-65,y+10);
+  vertex(x-56,y+25);
+  vertex(x-46,y+68);
+  vertex(x,y+95);
+  vertex(x+46,y+68);
+  vertex(x+56,y+25);
+  vertex(x+65,y+10);
+  endShape();
+};
+
+IronMan.prototype.changeColor = function(){
+  this._color1=color(floor(random(0,255)),floor(random(0,255)),floor(random(0,255)));
+  this._color2=color(floor(random(0,255)),floor(random(0,255)),floor(random(0,255)));
+  
+};
+
+
+var ironMan;
+var _scale;
+var angle;
+function setup(){
+  createCanvas(windowWidth,windowHeight);
+  var mySlider = createSlider(1,250,100);
+  var mySlider2 = createSlider(0,100,50);
+  var mySlider3 = createSlider(0,45,0);
+  ironMan=new IronMan(width/2-130,height/2);
+  
+  var myBtn = createButton("Change the color!");
+  myBtn.position(windowWidth /4, 80);
+  myBtn.mouseClicked(function(){
+    ironMan.changeColor();
+  });
+
+  var FirstSlider = createElement('h5','Scale');
+  FirstSlider.position(windowWidth /4-60, -2);
+  mySlider.position(windowWidth /4, 20);
+  mySlider.changed(changeScale);
+  var SecondSlider = createElement('h5','EyeColor');
+  SecondSlider.position(windowWidth /4-60, 18);
+  mySlider2.position(windowWidth /4, 40);
+  mySlider2.changed(EyeColor);
+  var SecondSlider = createElement('h5','Angle');
+  SecondSlider.position(windowWidth /4-60, 38);
+  mySlider3.position(windowWidth /4, 60);
+  mySlider3.changed(RotateAngle);
+
+
+}
+
+function draw(){
+  background(255);
+  scale(_scale);
+  rotate(radians(angle));
+  ironMan.draw();
+}
+
+
+
+function changeScale(){
+    _scale = this.value()/100;
+}
+
+function EyeColor(){
+    ironMan.eyeColor = this.value();
+}
+
+function RotateAngle(){
+   angle = this.value();
+}
