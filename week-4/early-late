@@ -1,3 +1,17 @@
+/**
+** Kevin's Comments:  Beautiful work here.  I could see you building upon this sketch for one of your final projects.
+I also like the use of complementary colors, tying them together with the moon/sun.
+I especially would love to see how you might incorporate some kind of animation into this material.
+**/
+
+//when declaring but not assigning variables in one line, try doing something like this:
+/*
+var clorFrom1,
+  colorTo1,
+  colorFrom2,
+  colorTo2;
+//Note, you should be more descriptive with your variable name that relates to which color (night or day) we are talking about
+*/
 var colorFrom1; var colorTo1; var colorFrom2; var colorTo2;
 function setup() {
   createCanvas(500,400);
@@ -9,6 +23,11 @@ function draw() {
   rect(0,0,250,400);
   colorFrom1= color(255,89,3);
   colorTo1=color(255,247,163);
+  
+  //be careful of redeclaring variable names within the same function scope.
+  //in this case you write var lerpAmt inside both for loops.  Consider declaring lerpAmt
+  //and lerpedCol at the top of your draw function, and then reassigning values to those variables
+  //inside of each loop.
   for(var i=0; i < height ; i+=3){
     var lerpAmt = map(i, 0, height, 0, 1.0);
     var lerpedCol = lerpColor(colorFrom1,
@@ -30,6 +49,8 @@ function draw() {
     strokeWeight(3);
     line(249,m,500,m);
   }
+  //since ellipseMode is by default CENTER,
+  //no need to call this here
   ellipseMode(CENTER);  
   fill(255,249,191);  
   noStroke();
