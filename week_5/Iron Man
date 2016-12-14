@@ -1,4 +1,5 @@
-
+//Nice work!  Think about how you might be able to parameterize the overall head size as well as color in your function.
+//Doing so would allow you to create a grid of slightly different heads, each reusing the same function definition.
 function setup() {
   createCanvas(500,500);
 
@@ -107,9 +108,12 @@ function lineOnFace(x,y){
 
 
 function eyes(x,y){
-  
+  //instead of color1 and color2, consider naming your variables more descriptively like:
+  //darkColor & lightColor
   var color2=color(255,249,224);
   var color1=color(0);
+  //this is great!  What if you were to change the eye position depending on the mouseX and mouseY coords
+  // the simplest way to do this is to use the map function and then add the mapped amount to your vertices.
   var lerpAmt = map(mouseX, 0, width, 0, 1.0);
   var lerpedCol = lerpColor(color1, color2, lerpAmt);
   fill(lerpedCol);
