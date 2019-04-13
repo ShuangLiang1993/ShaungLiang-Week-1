@@ -1,3 +1,6 @@
+/**
+** Kevin's comments:  Very cool!  nice work.  code comments inline...
+*/
 var waveLengthOne = 90.0;
 var waveLengthTwo = 95.0;
 var pointCount = 0;
@@ -31,10 +34,12 @@ function draw(){
   var _color = lerpColor(colorFrom,colorTo,map(cos(angle), -1, 1, 0, 1));
   fill(_color);
   noStroke();
-  
+  //instead of using mod 30 and mod 3 you could just simplify the math to be
+  // if ( i%3 === 0)
   if(floor((i%30)%3)===0){
     rect(x, y, 10*sin(angle), 10*sin(angle));
   }
+  //instead of using an if statement here, use an else if statement
   if(floor((i%30)%3)===1){
     ellipse(x, y, 10*sin(angle), 10*sin(angle));
   }
